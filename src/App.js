@@ -1,6 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './Components/navbar';
 import Course from './Components/course';
+import LoginButton from './Components/loginbutton';
+import LogoutButton from './Components/logoutbutton';
 function App() {
   return (
     <div className="">
@@ -14,6 +16,8 @@ function App() {
   provider={"Udemy"}
   cost={"Free"}
   />
+  <LoginButton/>
+  <LogoutButton/>
     </div>
   );
 }
