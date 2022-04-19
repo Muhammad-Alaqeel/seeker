@@ -7,13 +7,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Auth0Provider } from "@auth0/auth0-react";
 
 ReactDOM.render(
-  <Auth0Provider
-  domain="seeker.au.auth0.com"
-  clientId="zDKhjoetB2xjHDdk6YhVI3vGz3zAObcw"
-  redirectUri="http://localhost:3000"
-  >
+  // <Auth0Provider
+  // domain="seeker.au.auth0.com"
+  // clientId="zDKhjoetB2xjHDdk6YhVI3vGz3zAObcw"
+  // redirectUri="http://localhost:3000"
+  // >
+  <div>
     <App />
-    </Auth0Provider>
+    </div>
+    /* </Auth0Provider> */
 ,
   document.getElementById('root')
 );
