@@ -5,6 +5,9 @@ import LoginButton from './Components/loginbutton';
 import LogoutButton from './Components/logoutbutton';
 import TreeElement from './Components/treeElement'
 import Tree from './Tree/tree'
+import Crousal from './Components/Home/Slider/Crousal'
+import Card from './Components/Home/Card/Card'
+import CardPath from './CardPath'
 
 import React from "react";
 import './App.css';
@@ -73,6 +76,7 @@ class App extends React.Component {
 			
 
       <Tree/>
+
 		</div>
 
     

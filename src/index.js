@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Home from './Home';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Auth0Provider } from "@auth0/auth0-react";
@@ -13,7 +14,7 @@ ReactDOM.render(
   // redirectUri="http://localhost:3000"
   // >
   <div>
-    <App />
+    <Home />
     </div>
     /* </Auth0Provider> */
 ,
