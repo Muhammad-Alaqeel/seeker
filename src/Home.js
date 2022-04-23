@@ -3,6 +3,7 @@ import Crousal from './Components/Home/Slider/Crousal'
 import Card from './Components/Home/Card/Card'
 import CardPath from './CardPath'
 
+
 import React from "react";
 class Home extends React.Component {
 

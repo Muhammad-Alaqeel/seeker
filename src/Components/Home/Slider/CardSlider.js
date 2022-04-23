@@ -28,7 +28,7 @@ export default function CardSlider(props) {
                 <Card.Img src={props.image} className='child w-100' />
                 </div>
                 <Card.Body style={CardStyle}>
-                    <Card.Title style={title}>Web development path</Card.Title>
+                    <Card.Title style={title}>{props.title}</Card.Title>
                     <Card.Text>
                         Some quick example text to build on the card title and make up the bulk of
                         the card's content.
