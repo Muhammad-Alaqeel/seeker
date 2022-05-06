@@ -3,9 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Home from './Home';
+import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Auth0Provider } from "@auth0/auth0-react";
+import ApiApp from './ApiApp';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import { reducers } from './reducers';
+
+const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
 ReactDOM.render(
   // <Auth0Provider
@@ -13,9 +20,10 @@ ReactDOM.render(
   // clientId="zDKhjoetB2xjHDdk6YhVI3vGz3zAObcw"
   // redirectUri="http://localhost:3000"
   // >
-  <div>
+  <Provider store={store}>
     <Home />
-    </div>
+
+    </Provider>
     /* </Auth0Provider> */
 ,
   document.getElementById('root')
