@@ -37,3 +37,11 @@
     transform: rotate(360deg);
   }
 }
+
+img.avatar-icon {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  margin-left: 15px;
+  padding-top: 5px;
+}
