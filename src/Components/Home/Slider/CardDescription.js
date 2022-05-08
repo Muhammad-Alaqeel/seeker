@@ -1,7 +1,7 @@
 import Card from 'react-bootstrap/Card'
 import React from 'react'
 
-export default function CardDescription() {
+export default function CardDescription(props) {
 
     const round =
     {
@@ -15,11 +15,9 @@ export default function CardDescription() {
             <Card className='h-100 CC shadow' style={round}>
                 <Card.Header>Description</Card.Header>
                 <Card.Body className=''>
-                    <Card.Title>Web development Path</Card.Title>
+                    <Card.Title>{props.rightTitle}</Card.Title>
                     <Card.Text>
-                        With supporting text below as a natural lead-in to additional content.
-                        With supporting text below as a natural lead-in to additional content.
-                        With supporting text below as a natural lead-in to additional content.
+                        {props.rightDescription}
                     </Card.Text>
                 </Card.Body>
                 <button className='Enroll-btn' >Enroll In</button>
