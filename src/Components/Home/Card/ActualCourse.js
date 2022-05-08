@@ -54,7 +54,7 @@ export default class ActualCourse extends Component {
                                     <div className="content">
                                         <div className="category-info">
 
-                                            <div className="category-list"><a href="https://www.art.com">{this.props.provider}</a></div>
+                                            <div className="category-list"><a href={this.props.url}>{this.props.provider}</a></div>
                                             <div className="meta">
                                                 <i onClick={this.favoiteToggle} >
                                                     {this.state.IsFavorite ? <AiFillHeart style={{ width: "32px", height: "32px",color:"red" }} /> : <AiOutlineHeart style={{ width: "32px", height: "32px" , color:"red"}} />}
@@ -67,7 +67,7 @@ export default class ActualCourse extends Component {
                                         {/*    here*/}
 
 
-                                        <h4 className="title"><a href="https://www.apple.com">{this.props.title}
+                                        <h4 className="title"><a href={this.props.url}>{this.props.title}
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" strokeWidth="2" strokeLinecap="round"

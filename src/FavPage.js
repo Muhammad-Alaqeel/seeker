@@ -34,7 +34,7 @@ return (
 
 <div style={{display:'block'}}>
       <Lists desc
-      desc={"Check out the Paths that you have foviroted over here"}
+      // desc={"Check out the Paths that you have foviroted over here"}
       headline={"Favorite paths"}
        />
       </div>
@@ -48,7 +48,7 @@ return (
 
       <div style={{display:'block'}}>
       <Lists desc
-      desc={"Find the Courses that you have faviroted over here"}
+      // desc={"Find the Courses that you have faviroted over here"}
       headline={"Favorite Courses"}
        />
       </div>

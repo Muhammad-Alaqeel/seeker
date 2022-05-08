@@ -11,20 +11,21 @@ import ApiApp from './ApiApp';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { reducers } from './reducers';
+import FavPage from './FavPage';
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
 ReactDOM.render(
-  // <Auth0Provider
-  // domain="seeker.au.auth0.com"
-  // clientId="zDKhjoetB2xjHDdk6YhVI3vGz3zAObcw"
-  // redirectUri="http://localhost:3000"
-  // >
+  <Auth0Provider
+  domain="seeker.au.auth0.com"
+  clientId="zDKhjoetB2xjHDdk6YhVI3vGz3zAObcw"
+  redirectUri="http://localhost:3000"
+  >
   <Provider store={store}>
     <Home />
 
     </Provider>
-    /* </Auth0Provider> */
+     </Auth0Provider> 
 ,
   document.getElementById('root')
 );

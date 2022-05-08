@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navigation from './Components/navbar';
 import Course from './Components/course';
 import LoginButton from './Components/loginbutton';
 import LogoutButton from './Components/logoutbutton';
@@ -54,7 +53,6 @@ class App extends React.Component {
 <div className="">
     
          
-    <Navigation/>
     <LoginButton/>
     <LogoutButton/>
     <div className='d-flex justify-content-center'>
