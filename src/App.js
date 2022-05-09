@@ -54,7 +54,7 @@ export default function App() {
                 <Route path="/*" element={<Navigate to={"/"} />}></Route>
                 <Route path="/register" element={<Register />}></Route>
 				<Route path="/questions" element={
-				<div style={{ backgroundColor: "#ECF0F3" }}>
+				<div style={{ backgroundColor: "#edf0f4" , height:"100%",display:"flex", justifyContent:"space-around",alignItems:"center"}}>
 				<Questions questions={questions}/>
 				</div>
 				}></Route> 
