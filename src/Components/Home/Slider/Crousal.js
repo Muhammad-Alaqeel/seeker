@@ -13,7 +13,7 @@ export default function Crousal() {
     const [pathsDesc, setPathsDesc] = useState([])
 
     useEffect(() => {
-        axios.get('/PathDescription')
+        axios.get('http://localhost/PathDescription')
             .then(res => {
                 console.log(res)
                 setPathsDesc(res.data)
@@ -72,6 +72,7 @@ export default function Crousal() {
             {/* {pathsDesc.map(path => <li key={path.id}>{path.lTitle}</li>)} */}
                 {
                     pathsDesc.map( path => {
+                        console.log(path)
                         return (
                             <Carousel.Item key={path.id}>
                                 <div className='row ml-2 mr-2'>

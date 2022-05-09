@@ -73,3 +73,8 @@
 .fa-facebook:before {
   content: "\f09a";
 }
+
+.imgIcon{
+  width: 20px;
+  height: 20px;
+}

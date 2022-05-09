@@ -1,10 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button'
 import { Input, Spacer } from '@nextui-org/react';
 import './Profile.css'
 import axios from 'axios';
+import { AiFillLinkedin } from 'react-icons/ai';
+import { useNavigate } from "react-router-dom";
+import NavBar from '../../NavBar/NavBar';
+import NavBarSide from '../../SideNavBar/NavBarSide';
 
-export default function (props) {
+
+export default function Profile(props) {
 
     const [userInfo, setuserInfo] = useState({
         file: [],
@@ -17,20 +22,17 @@ export default function (props) {
         linkedin: "",
         image: "",
     })
-    const [profileInfo, setProfileIfno] = useState([])
-    // const [userId, setUserId] = useState([]) to store a specific profile id
+    const [profileInfo, setProfileInfo] = useState([])
+    // const [userId, setUserId] = useState(1) //to store a specific profile id
     useEffect(() => {
-        axios.get('/userProfile')
+        fetch('userProfile')
             .then(res => {
-                console.log(res)
-                // console.log(res.data[0]); if I want to specify a specifi id
-                // setUserId(res.data[0])
-                // console.log(userId);
-                setProfileIfno(res.data)
+                return res.json();
+            }).then(data => {
+                console.log(data);
+                setProfileInfo(data);
             })
-            .catch(err => console.log(err));
     }, [])
-    // console.log(profileInfo[0].firstName)
 
     const handleInputChange = (event) => {
         const newuserInfo = { ...userInfo }
@@ -40,7 +42,6 @@ export default function (props) {
         // console.log(newuserInfo)
     }
 
-
     function handle(e) {
         const newdata = { ...data }
         // when writing in the input apper in the console
@@ -49,12 +50,25 @@ export default function (props) {
         // console.log(newdata)
     }
 
+    /////
+
+    let navigate = useNavigate();
+    useEffect(() => {
+        if (!localStorage.getItem("token")) {
+            navigate("/login", { replace: false });
+            navigate(0);
+        }
+    });
+
+    ////
+
+
     const [isSucces, setSuccess] = useState(null);
 
     const submit = async () => {
         const formdata = new FormData();
         formdata.append('avatar', userInfo.file);
-        axios.post("/uploadImg", formdata, {
+        axios.post("localhost:80/uploadImg", formdata, {
             headers: { "Content-Type": "multipart/form-data" }
         })
             .then(res => { // then print response status
@@ -62,32 +76,30 @@ export default function (props) {
             })
     }
 
+
     function submitProfile(e) {
-        // e.preventDefault();
+        e.preventDefault();
+        alert('Profile updated');
         const body = JSON.stringify(data);
-        axios.post("/profile", body, {
+        axios.post("localhost:80/profile", body, {
             headers: { "Content-Type": 'application/json' }
         })
             .then(res => console.log("JSON is sent"))
             .catch(err => console.log(err))
     }
 
-    const checkName = () => {
-        if (data.firstName === "" && data.lastName === "") {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     return (
+           <div>
+            <NavBar />
+            <NavBarSide />
         <div className='container'>
             <div className='row border-top'>
                 <div className='col-md-3 col-xl-3 col-xxl-3 col-sm-12 border-end'>
                     <div className='d-flex justify-content-center'>
-                        <img className='profileImage img-fluid' src='images/1.jpg' />
+                        {userInfo.filepreview !== null ? <img className="profileImage img-fluid" src={userInfo.filepreview} alt="Avatar" /> : <img className='profileImage img-fluid' src='images/avatar.jpg' alt='avatar' />}
                     </div>
-                    {checkName() ? <h4 className='text-center fontColor mt-3 text-uppercase '> user Name </h4> : <h4 className='text-center fontColor mt-3 text-uppercase '>{data.firstName} {data.lastName}</h4>}
+                    <h4 className='text-center fontColor mt-3 text-uppercase'> {data.firstName} {data.lastName}</h4>
+                    <h1 className='text-center'><a href={`https://www.linkedin.com/in/${data.linkedin}`} target='_blank'><i><AiFillLinkedin className='text-primary' /></i></a></h1>
 
                     <div className='row mt-4 no-gutters d-grid gap-2'>
                         <div className='col-12'>
@@ -107,16 +119,16 @@ export default function (props) {
                     <div className='ML-3'>
                         <h5 className='mt-5 mb-5 fontColor' >User information</h5>
                         <form onSubmit={(e) => submitProfile(e)}>
-                            <Input color='primary' width="500px" clearable bordered labelPlaceholder="Fisrt Name" onChange={(e) => handle(e)} id="firstName" value={data.firstName} required={true} />
+                            <Input color='primary' width="100%" clearable bordered labelPlaceholder="Fisrt Name" onChange={(e) => handle(e)} id="firstName" value={data.firstName} required={true} />
                             <Spacer y={1.8} />
-                            <Input color='primary' width="500px" clearable bordered labelPlaceholder="Last Name" onChange={(e) => handle(e)} id="lastName" value={data.lastName} required={true} />
+                            <Input color='primary' width="100%" clearable bordered labelPlaceholder="Last Name" onChange={(e) => handle(e)} id="lastName" value={data.lastName} required={true} />
                             <Spacer y={1.5} />
                             <Input
                                 bordered
                                 labelLeft="https://www.linkedin.com/in/"
                                 placeholder="Linkedin profile"
                                 color='primary'
-                                width="500px"
+                                width="100%"
                                 onChange={(e) => handle(e)}
                                 id="linkedin"
                                 value={data.linkedin}
@@ -128,7 +140,7 @@ export default function (props) {
                                 <div className="form-row">
                                     <label className="text-black-50 mb-1">Select a profile image :</label>
                                     {/* onChange={handleInputChange} */}
-                                    <input type="file" className="form-control" required={true} onChange={handleInputChange} id="file" value={data.file} />
+                                    <input type="file" className="form-control w-100" required={true} onChange={handleInputChange} id="file" value={data.file} />
                                 </div>
                             </div>
                             <div className='d-flex justify-content-center'>
@@ -146,6 +158,7 @@ export default function (props) {
                     </div>
                 </div>
             </div>
+        </div >
         </div>
     )
 }

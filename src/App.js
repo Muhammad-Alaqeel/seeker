@@ -1,97 +1,66 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Course from './Components/course';
-import LoginButton from './Components/loginbutton';
-import LogoutButton from './Components/logoutbutton';
-import TreeElement from './Components/treeElement'
-import Tree from './Tree/tree'
-import Crousal from './Components/Home/Slider/Crousal'
-import Card from './Components/Home/Card/Card'
-import CardPath from './CardPath'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    Routes,
+    useNavigate,
+    Navigate,
+} from "react-router-dom";
+import FavPage from './FavPage';
+import Home from './Home';
+import Home2 from "./Home/Home";
+import Login from "./Login/Login";
+import Register from "./Register/Register";
+import FavouritePage from "./FavouritePage";
+import BookmarkPage from "./BookmarkPage";
+import Profile from "./Components/Home/Profile/Profile";
+import Questions from "./question/Questions";
+export default function App() {
 
-import React from "react";
-import './App.css';
-class App extends React.Component {
 
-	// Constructor
-	constructor(props) {
-		super(props);
+    axios.interceptors.request.use(function (config) {
+        const token = localStorage.getItem("token");
+        config.headers.Authorization = token;
+        return config;
+    });
+	const questions = ["what is data exploration? ", "what is data exploration? ", "what does QMV process involves? "]
 
-		this.state = {
-			items: [],
-			DataisLoaded: false
-		};
-	}
+    return (
+        //  help us go to the page by put the name in search ex: ../favourites
 
-	// ComponentDidMount is used to
-	// execute the code
-	componentDidMount() {
-    
-		 fetch("http://localhost:80/api/course",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        }
-      })
-			.then((res) => res.json())
-			.then((json) => {
-				this.setState({
-					items: json,
-          DataisLoaded: true
-				});
-			})
-	}
-	render() {
-		const { DataisLoaded, items } = this.state;
-		if (!DataisLoaded) return <div>
-			<h1> Pleses wait some time.... </h1> </div> ;
-
-		return (
-		<div className = "App">
-
-<div className="">
-    
-         
-    <LoginButton/>
-    <LogoutButton/>
-    <div className='d-flex justify-content-center'>
-    </div>
-      </div>
-			{
-                items.map((item) => ( 
-                <Course
-                title={item.name}
-                description={item.description}
-                id={item.id}
-                image={item.imageurl}
-                provider={item.provider}
-                price = {item.price}
-                
-                />
-               
-                ))
-            }
-			
-
-      <Tree/>
-
-		</div>
-
-    
-	);
-
-  
- 
-     
-  
-
-  }
+        <Router>
+            <Routes>
+			<Route path="/" element={<Home />}></Route>
+                <Route path="/courses" element={
+				<div style={{ backgroundColor: "#ECF0F3" }}>
+				<Home2 />
+				</div>
+				}></Route>
+                <Route path="/favourites" element={
+				<div style={{ backgroundColor: "#ECF0F3" }}>
+				<FavouritePage />
+				</div>
+				}></Route>
+                <Route path="/bookmarks" element={
+				
+				<div style={{ backgroundColor: "#ECF0F3" }}>
+				<BookmarkPage />	
+				</div>
+				}></Route>
+                <Route path="/login" element={<Login />}></Route>
+                <Route path="/*" element={<Navigate to={"/"} />}></Route>
+                <Route path="/register" element={<Register />}></Route>
+				<Route path="/questions" element={
+				<div style={{ backgroundColor: "#ECF0F3" }}>
+				<Questions questions={questions}/>
+				</div>
+				}></Route> 
+                <Route path="/profile" element={<Profile/>} />
+   
+            </Routes>
+        </Router>
+    );
 }
-
-
-export default App;
-
-
-
-// export default App;

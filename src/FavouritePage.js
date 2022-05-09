@@ -6,6 +6,8 @@ import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsBookmarkPlus } from "react-icons/bs";
 import { BsBookmarkPlusFill } from "react-icons/bs";
+import NavBarSide from "./Components/SideNavBar/NavBarSide";
+import NavBar from "./Components/NavBar/NavBar";
 
 function FavouritePage() {
 
@@ -13,7 +15,7 @@ function FavouritePage() {
 
     const [courses, setCourses] = useState([]);
     const fetchCourses = () => {
-        axios.get("http://localhost:8080/courses/favourites").then((response) => {
+        axios.get("http://localhost:80/courses/favourites").then((response) => {
             console.log(response.data.courses);
             setCourses(response.data.courses);
         });
@@ -25,7 +27,7 @@ function FavouritePage() {
 
     const [paths, setPaths] = useState([]);
     const fetchPaths = () => {
-        axios.get("http://localhost:8080/paths/favourites").then((response) => {
+        axios.get("http://localhost:80/paths/favourites").then((response) => {
             console.log(response.data.paths);
             setPaths(response.data.paths);
         });
@@ -68,7 +70,7 @@ function FavouritePage() {
     //========== Favourite  courses=====================================
     const addToFavourites = async (id) => {
         axios
-            .put(`http://localhost:8080/courses/favourite/${id}`)
+            .put(`http://localhost:80/courses/favourite/${id}`)
             .then((response) => {
                 console.log(response.data.message);
                 fetchCourses();
@@ -76,7 +78,7 @@ function FavouritePage() {
     };
     const removeFromFavourites = async (id) => {
         axios
-            .put(`http://localhost:8080/courses/favourite/remove/${id}`)
+            .put(`http://localhost:80/courses/favourite/remove/${id}`)
             .then((response) => {
                 console.log(response.data.message);
                 fetchCourses();
@@ -87,7 +89,7 @@ function FavouritePage() {
     //========== Favourite  paths=====================================
     const addToFavouritesPaths = async (id) => {
         axios
-            .put(`http://localhost:8080/paths/favourite/${id}`)
+            .put(`http://localhost:80/paths/favourite/${id}`)
             .then((response) => {
                 console.log(response.data.message);
                 fetchPaths();
@@ -95,7 +97,7 @@ function FavouritePage() {
     };
     const removeFromFavouritesPaths = async (id) => {
         axios
-            .put(`http://localhost:8080/paths/favourite/remove/${id}`)
+            .put(`http://localhost:80/paths/favourite/remove/${id}`)
             .then((response) => {
                 console.log(response.data.message);
                 fetchPaths();
@@ -106,7 +108,7 @@ function FavouritePage() {
     //========== bookmark    courses =====================================
     const addToBookmarks = async (id) => {
         axios
-            .put(`http://localhost:8080/courses/bookmark/${id}`)
+            .put(`http://localhost:80/courses/bookmark/${id}`)
             .then((response) => {
                 console.log(response.data.message);
                 fetchCourses();
@@ -114,7 +116,7 @@ function FavouritePage() {
     };
     const removeFromBookmarks = async (id) => {
         axios
-            .put(`http://localhost:8080/courses/bookmark/remove/${id}`)
+            .put(`http://localhost:80/courses/bookmark/remove/${id}`)
             .then((response) => {
                 console.log(response.data.message);
                 fetchCourses();
@@ -124,7 +126,7 @@ function FavouritePage() {
     //========== bookmark   paths =====================================
     const addToBookmarksPaths = async (id) => {
         axios
-            .put(`http://localhost:8080/paths/bookmark/${id}`)
+            .put(`http://localhost:80/paths/bookmark/${id}`)
             .then((response) => {
                 console.log(response.data.message);
                 fetchPaths();
@@ -132,7 +134,7 @@ function FavouritePage() {
     };
     const removeFromBookmarksPaths = async (id) => {
         axios
-            .put(`http://localhost:8080/paths/bookmark/remove/${id}`)
+            .put(`http://localhost:80/paths/bookmark/remove/${id}`)
             .then((response) => {
                 console.log(response.data.message);
                 fetchPaths();
@@ -158,13 +160,16 @@ function FavouritePage() {
 
 
     return (
+        <div>
+            <NavBar />
+            <NavBarSide />
         <div
             className="rn-portfolio-area rn-section-gap section-separator"
             id="portfolio"
         >
 
             {/*  =========logout  ======== ======== ======== */}
-
+{/* 
             <button
                 onClick={logOut}
                 className="btn btn-danger"
@@ -194,9 +199,10 @@ function FavouritePage() {
                     />
                     {/*  =========logout end ======== ======== ======== */}
 
-                </svg>
+                {/* </svg>
                 Logout
-            </button>
+            </button>  */}
+            
             <div className="container">
 
                 <div className="row">
@@ -519,6 +525,7 @@ function FavouritePage() {
 
 
             </div>
+        </div>
         </div>
     );
 }

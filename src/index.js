@@ -12,20 +12,30 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { reducers } from './reducers';
 import FavPage from './FavPage';
+import Home2 from "./Home/Home";
+import Login from "./Login/Login";
+import Register from "./Register/Register";
+import FavouritePage from "./FavouritePage";
+import BookmarkPage from "./BookmarkPage";
 
-const store = createStore(reducers, compose(applyMiddleware(thunk)));
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Routes,
+  useNavigate,
+  Navigate,
+} from "react-router-dom";import Profile from "./Components/Home/Profile/Profile";
+
+
+
 
 ReactDOM.render(
-  <Auth0Provider
-  domain="seeker.au.auth0.com"
-  clientId="zDKhjoetB2xjHDdk6YhVI3vGz3zAObcw"
-  redirectUri="http://localhost:3000"
-  >
-  <Provider store={store}>
-    <Home />
 
-    </Provider>
-     </Auth0Provider> 
+  <React.StrictMode>
+<App />
+    </React.StrictMode>
 ,
   document.getElementById('root')
 );
