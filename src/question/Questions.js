@@ -58,7 +58,7 @@ function Questions(props) {
 	return (
 		
 		<div className='app'>
-			{/* <HomePage /> */}
+			{/* <HomePage b/> */}
 			{showScore ? (
 				<div className='score-section' >
 				<br />
