@@ -58,30 +58,31 @@ function Questions(props) {
 	return (
 		
 		<div className='app'>
-			{/* <HomePage /> */}
+			{/* <HomePage b/> */}
 			{showScore ? (
 				<div className='score-section' >
 				<br />
-					You scored ({score}) out of 3. <br /><br />
-					You scored ({score}) out of 3. <br /><br />
-					You scored ({score}) out of 3. <br /><br />
+				<span style={{color:"white"}}>	You scored ({score}) out of 3. </span><br /><br />
+				<span style={{color:"white"}}>	You scored ({score}) out of 3. </span><br /><br />
+				<span style={{color:"white"}}>	You scored ({score}) out of 3.</span> <br /><br />
+					<div className='d-flex justify-content-end' style={{width:"100%"}}>
 
-          <button>Submit</button>
-          
+          <button className='Enroll-btn MyBtn2' style={{boxShadow:"0px 0px 0px 0px #ebebeb"}}>Submit</button>
+          </div>
 				</div>
 			) : (
 				<>
 					<div className='question-section'>
 						<div className='question-count'>
-							<span>Question {currentQuestion + 1}</span>/3
+							<span style={{color:"white"}}>Question {currentQuestion + 1}/3</span>
 						</div>
-						<div className='question-text'>{props.questions[currentQuestion]}</div>
+						<div className='question-text'> 	<span style={{color:"white",fontSize:"large"}}> {props.questions[currentQuestion]}</span></div>
 					</div>
-					<textarea  placeholder='Right what you know' ></textarea>
-				<div className='answer-section'>
-					
-							<button onClick={() => handleAnswerOptionClick()}>Next</button>
-						     
+					<textarea className='textarea2'  placeholder='Right what you know' ></textarea>
+				<div className='answer-section d-flex justify-content-end ' >
+					<div className='d-flex justify-content-end'>
+							<button style={{boxShadow:"0px 0px 0px 0px #ebebeb"}} className='Enroll-btn MyBtn2' onClick={() => handleAnswerOptionClick()}>Next</button>
+							</div>  
 					</div>
 				</>
 			)}
